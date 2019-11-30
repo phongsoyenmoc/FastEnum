@@ -458,6 +458,37 @@ namespace FastEnumUtility
                 IsFlags = Attribute.IsDefined(Type, typeof(FlagsAttribute));
                 var distinctedMember = Members.OrderBy(x => x.Value).Distinct(new Member<T>.ValueComparer()).ToArray();
                 MemberByName = Members.ToFrozenStringKeyDictionary(x => x.Name);
+#if CSHARP_7_OR_LATER
+                switch (Type.GetTypeCode(Type))
+                {
+                    case TypeCode.SByte:
+                        UnderlyingOperation = SByteOperation<T>.Create(MinValue, MaxValue, distinctedMember);
+                        break;
+                    case TypeCode.Byte:
+                        UnderlyingOperation = ByteOperation<T>.Create(MinValue, MaxValue, distinctedMember);
+                        break;
+                    case TypeCode.Int16:
+                        UnderlyingOperation = Int16Operation<T>.Create(MinValue, MaxValue, distinctedMember);
+                        break;
+                    case TypeCode.UInt16:
+                        UnderlyingOperation = UInt16Operation<T>.Create(MinValue, MaxValue, distinctedMember);
+                        break;
+                    case TypeCode.Int32:
+                        UnderlyingOperation = Int32Operation<T>.Create(MinValue, MaxValue, distinctedMember);
+                        break;
+                    case TypeCode.UInt32:
+                        UnderlyingOperation = UInt32Operation<T>.Create(MinValue, MaxValue, distinctedMember);
+                        break;
+                    case TypeCode.Int64:
+                        UnderlyingOperation = Int64Operation<T>.Create(MinValue, MaxValue, distinctedMember);
+                        break;
+                    case TypeCode.UInt64:
+                        UnderlyingOperation = UInt64Operation<T>.Create(MinValue, MaxValue, distinctedMember);
+                        break;
+                    default:
+                        throw new InvalidOperationException();
+                }
+#elif CSHARP_7_3_OR_NEWER
                 UnderlyingOperation
                     = Type.GetTypeCode(Type) switch
                     {
@@ -471,6 +502,7 @@ namespace FastEnumUtility
                         TypeCode.UInt64 => UInt64Operation<T>.Create(MinValue, MaxValue, distinctedMember),
                         _ => throw new InvalidOperationException(),
                     };
+#endif
             }
             #endregion
         }

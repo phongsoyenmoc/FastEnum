@@ -23,6 +23,7 @@ Intel Core i7-8565U CPU 1.80GHz (Whiskey Lake), 1 CPU, 8 logical and 4 physical 
 # Support Platform
 
 - .NET Standard 2.0
+- Unity 2019.3.0f1 (Csharp 7.3)
 
 
 

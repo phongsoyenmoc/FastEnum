@@ -132,7 +132,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, TKey newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, TKey newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? EqualityComparer<TKey>.Default.GetHashCode(newKey);
                 var index = hash & (buckets.Length - 1);
@@ -140,12 +140,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -156,7 +156,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (EqualityComparer<TKey>.Default.Equals(lastEntry.Key, newKey))
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -164,12 +164,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
@@ -459,7 +459,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, string newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, string newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? newKey.GetHashCode();
                 var index = hash & (buckets.Length - 1);
@@ -467,12 +467,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -483,7 +483,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (lastEntry.Key == newKey)
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -491,12 +491,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
@@ -786,7 +786,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, sbyte newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, sbyte newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? newKey.GetHashCode();
                 var index = hash & (buckets.Length - 1);
@@ -794,12 +794,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -810,7 +810,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (lastEntry.Key == newKey)
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -818,12 +818,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
@@ -1113,7 +1113,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, byte newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, byte newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? newKey.GetHashCode();
                 var index = hash & (buckets.Length - 1);
@@ -1121,12 +1121,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -1137,7 +1137,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (lastEntry.Key == newKey)
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -1145,12 +1145,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
@@ -1440,7 +1440,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, short newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, short newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? newKey.GetHashCode();
                 var index = hash & (buckets.Length - 1);
@@ -1448,12 +1448,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -1464,7 +1464,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (lastEntry.Key == newKey)
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -1472,12 +1472,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
@@ -1767,7 +1767,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, ushort newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, ushort newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? newKey.GetHashCode();
                 var index = hash & (buckets.Length - 1);
@@ -1775,12 +1775,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -1791,7 +1791,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (lastEntry.Key == newKey)
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -1799,12 +1799,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
@@ -2094,7 +2094,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, int newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, int newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? newKey.GetHashCode();
                 var index = hash & (buckets.Length - 1);
@@ -2102,12 +2102,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -2118,7 +2118,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (lastEntry.Key == newKey)
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -2126,12 +2126,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
@@ -2421,7 +2421,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, uint newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, uint newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? newKey.GetHashCode();
                 var index = hash & (buckets.Length - 1);
@@ -2429,12 +2429,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -2445,7 +2445,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (lastEntry.Key == newKey)
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -2453,12 +2453,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
@@ -2748,7 +2748,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, long newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, long newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? newKey.GetHashCode();
                 var index = hash & (buckets.Length - 1);
@@ -2756,12 +2756,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -2772,7 +2772,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (lastEntry.Key == newKey)
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -2780,12 +2780,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
@@ -3075,7 +3075,7 @@ namespace FastEnumUtility.Internals
 
             #region Local Functions
             //--- please pass 'key + newEntry' or 'key + value'.
-            static bool AddToBuckets(Entry[] buckets, ulong newKey, Entry newEntry, TValue value, out TValue resultingValue)
+            bool AddToBuckets(Entry[] buckets, ulong newKey, Entry newEntry, TValue valueLocal, out TValue resultingValueLocal)
             {
                 var hash = newEntry?.Hash ?? newKey.GetHashCode();
                 var index = hash & (buckets.Length - 1);
@@ -3083,12 +3083,12 @@ namespace FastEnumUtility.Internals
                 {
                     if (newEntry == null)
                     {
-                        resultingValue = value;
-                        buckets[index] = new Entry(newKey, resultingValue, hash);
+                        resultingValueLocal = valueLocal;
+                        buckets[index] = new Entry(newKey, resultingValueLocal, hash);
                     }
                     else
                     {
-                        resultingValue = newEntry.Value;
+                        resultingValueLocal = newEntry.Value;
                         buckets[index] = newEntry;
                     }
                 }
@@ -3099,7 +3099,7 @@ namespace FastEnumUtility.Internals
                     {
                         if (lastEntry.Key == newKey)
                         {
-                            resultingValue = lastEntry.Value;
+                            resultingValueLocal = lastEntry.Value;
                             return false;
                         }
 
@@ -3107,12 +3107,12 @@ namespace FastEnumUtility.Internals
                         {
                             if (newEntry == null)
                             {
-                                resultingValue = value;
-                                lastEntry.Next = new Entry(newKey, resultingValue, hash);
+                                resultingValueLocal = valueLocal;
+                                lastEntry.Next = new Entry(newKey, resultingValueLocal, hash);
                             }
                             else
                             {
-                                resultingValue = newEntry.Value;
+                                resultingValueLocal = newEntry.Value;
                                 lastEntry.Next = newEntry;
                             }
                             break;
