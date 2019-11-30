@@ -27,8 +27,9 @@ Intel Core i7-8565U CPU 1.80GHz (Whiskey Lake), 1 CPU, 8 logical and 4 physical 
 
 # Dependency
 
--system-memory: [!v4.5.3](https://www.nuget.org/packages/System.Memory/)
--system-runtime-compiler-services-unsafe: [!v4.6.0](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/)
+    - system-memory: [v4.5.3](https://www.nuget.org/packages/System.Memory/)
+
+    - system-runtime-compiler-services-unsafe: [v4.6.0](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/)
 
 
 # How to use
