@@ -22,14 +22,11 @@ Intel Core i7-8565U CPU 1.80GHz (Whiskey Lake), 1 CPU, 8 logical and 4 physical 
 
 # Support Platform
 
-- .NET Standard 2.0
-- Unity 2019.3.0f1 (Csharp 7.3)
-
-# Dependency
-
-    - system-memory: [v4.5.3](https://www.nuget.org/packages/System.Memory/)
-
-    - system-runtime-compiler-services-unsafe: [v4.6.0](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/)
+.NET Standard 2.0+
+Unity with C# 7.3
+Remove switch expression (need C# 8)
+Remove static keyword for local function (need C# 8)
+Rename local parametor (a local or parameter named 'value' cannot be declared in this scope because that name is used in an enclosing local scope to define a local or parameter)
 
 
 # How to use
@@ -69,7 +66,7 @@ There are some functions that are often used for enum, and you can be used more 
 
 ## 1. Gets pairwised member information
 
-Sometimes you want value / name pair of enum. `Member<TEnum>` can be used under such cases. `FieldInfo` is also included, so please use it for reflection code.
+Sometimes you want name / value pair of enum. `Member<TEnum>` can be used under such cases. Of course supports [deconstruction](https://docs.microsoft.com/en-us/dotnet/csharp/deconstruct) feature. `FieldInfo` is also included, so please use it for reflection code.
 
 
 ```cs
@@ -82,6 +79,7 @@ class Member<TEnum>
 }
 
 var member = Fruits.Apple.ToMember();
+var (name, value) = member;  // Supports deconstruction
 ```
 
 
